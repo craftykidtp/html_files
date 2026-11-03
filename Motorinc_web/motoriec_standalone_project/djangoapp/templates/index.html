@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - Motoriec{% endblock %}
+
+{% block content %}
+<section class="hero-card">
+    <div>
+        <p class="eyebrow">MOTORIEC DASHBOARD</p>
+        <h2>Welcome, {{ user.username }}!</h2>
+        <p>Manage bike spare parts, riding gadgets and maintenance services from one place.</p>
+        <div class="hero-actions">
+            <a class="button" href="{% url 'spares' %}">View Inventory</a>
+            <a class="button button-secondary" href="{% url 'contact' %}">Book a Service</a>
+        </div>
+    </div>
+</section>
+
+<section class="content-card" id="welcome">
+    <h2>Maintenance Status</h2>
+    <p>Click the below to show the Current Maintenace Status.</p>
+    <button class="button" id="statusButton" type="button">Maintenance Status</button>
+    <p id="statusText" class="status-text" aria-live="polite">Your Maintenance status will appear here.</p>
+    <p class="small-note">This is a Live Message from the Maintenance System.</p>
+</section>
+
+<section class="content-card helmet-section">
+    <h2>AGV Helmets - Restocked This Week!</h2>
+    <p>Explore three of our featured AGV helmets.</p>
+
+    <div class="helmet-gallery">
+        <article class="helmet-card">
+            <img src="{% static 'images/helmet1.jpg' %}" alt="AGV K1 helmet">
+            <h3>AGV K1</h3>
+            <p>Sporty AGV helmet for everyday riding.</p>
+        </article>
+        <article class="helmet-card">
+            <img src="{% static 'images/helmet2.jpg' %}" alt="AGV K3 helmet">
+            <h3>AGV K3</h3>
+            <p>Comfortable AGV helmet for long rides.</p>
+        </article>
+        <article class="helmet-card">
+            <img src="{% static 'images/helmet3.jpg' %}" alt="AGV Pista GP RR helmet">
+            <h3>AGV Pista GP RR</h3>
+            <p>Premium AGV helmet for performance riding.</p>
+        </article>
+    </div>
+</section>
+
+<aside class="arrival-note">
+    <h3>New Arrivals</h3>
+    <p>We have restocked AGV helmets and will introduce more accessories soon.</p>
+</aside>
+{% endblock %}

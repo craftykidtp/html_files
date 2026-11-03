@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Motoriec{% endblock %}
+
+{% block content %}
+<section class="auth-card">
+    <p class="eyebrow">WELCOME BACK</p>
+    <h2>Login to Motoriec</h2>
+    <p class="auth-intro">Enter your username and password to access the Motoriec dashboard.</p>
+
+    {% if form.errors %}
+        <div class="message error">The username or password is incorrect. Please try again.</div>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}" class="data-form">
+        {% csrf_token %}
+        <label for="id_username">Username</label>
+        <input type="text" name="username" id="id_username" autocomplete="username" required autofocus>
+
+        <label for="id_password">Password</label>
+        <input type="password" name="password" id="id_password" autocomplete="current-password" required>
+
+        {% if next %}
+            <input type="hidden" name="next" value="{{ next }}">
+        {% endif %}
+
+        <button class="button button-full" type="submit">Login</button>
+    </form>
+
+    <div class="auth-links">
+        <a href="{% url 'password_reset' %}">Forgot your password?</a>
+        <span>New to Motoriec? <a href="{% url 'register' %}">Create an account</a></span>
+    </div>
+</section>
+{% endblock %}

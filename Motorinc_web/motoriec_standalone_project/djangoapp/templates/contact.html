@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Service - Motoriec{% endblock %}
+
+{% block content %}
+<section class="content-card form-section">
+    <h2>Book a Maintenance Service or Request a Part</h2>
+    <p>Fill out the form below to prepare a service request.</p>
+
+    <form id="serviceForm" class="data-form">
+        <label for="fname">Full name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Enter your full name" required>
+
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="service">Select service type</label>
+        <select id="service" name="service" required>
+            <option value="routine">Routine Bike Maintenance</option>
+            <option value="repair">Spare Part Replacement / Repair</option>
+            <option value="gadget">Gadget Installation</option>
+        </select>
+
+        <label for="details">Additional details</label>
+        <textarea id="details" name="details" rows="5" placeholder="Describe the issue or the specific part needed..."></textarea>
+
+        <button class="button" type="submit">Submit Request</button>
+    </form>
+
+    <p id="errorMessage" class="form-error" aria-live="polite"></p>
+    <p id="costText" class="result-text" aria-live="polite"></p>
+    <div id="confirmation" class="confirmation" aria-live="polite">
+        <h3>Request Prepared</h3>
+        <p>Thank you. Your request has been sent to the Mechanics.</p>
+    </div>
+    <p id="bookingCounter" class="small-note">Successful requests in this session: 0</p>
+</section>
+{% endblock %}

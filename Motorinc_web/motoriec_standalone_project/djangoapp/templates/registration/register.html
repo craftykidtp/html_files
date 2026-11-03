@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Account - Motoriec{% endblock %}
+
+{% block content %}
+<section class="auth-card">
+    <p class="eyebrow">JOIN MOTORIEC</p>
+    <h2>Create an account</h2>
+    <p class="auth-intro">Choose a username, provide an email address and create a password.</p>
+
+    <form method="post" class="data-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button button-full" type="submit">Create Account</button>
+    </form>
+
+    <div class="auth-links">
+        <span>Already have an account? <a href="{% url 'login' %}">Login</a></span>
+    </div>
+</section>
+{% endblock %}

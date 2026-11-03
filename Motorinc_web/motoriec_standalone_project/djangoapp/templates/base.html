@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Motoriec{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div>
+                <h1>Motoriec Spares &amp; Gadgets</h1>
+                <p>Your reliable two-wheeler maintenance system</p>
+            </div>
+            {% if user.is_authenticated %}
+                <div class="account-box">
+                    <span>Signed in as <strong>{{ user.username }}</strong></span>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button class="button button-small button-outline" type="submit">Logout</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'spares' %}">Spares &amp; Inventory</a></li>
+                <li><a href="{% url 'contact' %}">Book Service</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Create Account</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <main class="page-container">
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Motoriec. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
